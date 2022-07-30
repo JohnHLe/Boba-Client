@@ -22,3 +22,14 @@ export const Button = ({children, type, onClick, buttonStyle, buttonSize}) => {
     )
 };
 
+
+/*        <ActionTag>
+            <button 
+             className={`btn ${checkButtonStyle} ${checkButtonSize}`} 
+             onClick={onClick} 
+             type={type} 
+             to={to}
+             >
+                {children}
+            </button>
+        </ActionTag>*/

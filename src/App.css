@@ -5,7 +5,7 @@
 }
 
 .home,
-.services,
+.menu,
 .products,
 .sign-up {
   display: flex;
@@ -15,8 +15,8 @@
   font-size: 3rem;
 }
 
-.services {
-  background-image: url('../public/images/bobahome.jpeg');
+.menu {
+  background-image: url('../public/images/boba.jpg');
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
@@ -25,7 +25,7 @@
 }
 
 .products {
-  background-image: url('../public/images/bobahome.jpeg');
+  background-image: url('../public/images/boba.jpg');
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
@@ -34,7 +34,7 @@
 }
 
 .sign-up {
-  background-image: url('../public/images/bobahome.jpeg');
+  background-image: url('../public/images/boba.jpg');
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;

@@ -14,6 +14,7 @@ function HeroSection() {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
+          to='/sign-up'
         >
           GET STARTED
         </Button>
@@ -21,9 +22,9 @@ function HeroSection() {
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          onClick={console.log('hey')}
         >
           WATCH PREVIEW <i className='far fa-play-circle' />
+          
         </Button>
       </div>
     </div>

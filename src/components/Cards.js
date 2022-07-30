@@ -13,33 +13,33 @@ function Cards() {
                       src= "images/bobahome.jpeg"
                       text="Have the sweet taste of our special milk tea"
                       label='Milk Tea'
-                      path='/services'
+                      path='/menu'
                     />
                     <CardItem 
                       src= "images/iced tea.jpg"
                       text="Refresh yourself with some of refreshing iced tea"
                       label='Iced Tea'
-                      path='/services'
+                      path='/menu'
                     />
                 </ul>
-                <ul className="cards__items">
+                <ul className="cards__items"> 
                     <CardItem 
                         src= "images/coffeeimg.jpg"
                         text= "Wake up with a nice coffee"
                         label='Coffee'
-                        path='/services'
+                        path='/menu'
                     />
                     <CardItem 
                         src= "images/popcornchicken.jpg"
-                        text="Explore your Options"
+                        text="Getting Hungry?"
                         label='Snacks'
-                        path='/services'
+                        path='/menu'
                     />
                     <CardItem 
                       src= "images/cocktails.jpg"
-                      text="Explore your Options"
+                      text="Feeling a Party Night?"
                       label='Night Specials'
-                      path='/services'
+                      path='/menu'
                     />
                 </ul>
             </div>
