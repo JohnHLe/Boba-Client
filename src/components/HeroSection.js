@@ -1,31 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
-import { Button } from './Button';
-import './HeroSection.css';
+import './css/HeroSection.css';
+import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 function HeroSection() {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
-    <div className='hero-container'>
-      <video src='/videos/reactvid.mp4' autoPlay loop muted />
+    <div className="hero-container">
+      <video src="/videos/reactvid.mp4" autoPlay loop muted />
       <h1>Good Times, Good Boba</h1>
       <p>What are you waiting for?</p>
-      <div className='hero-btns'>
-        <Button
-          className='btns'
-          buttonStyle='btn--outline'
-          buttonSize='btn--large'
-          to='/sign-up'
+      <div className="hero-btns">
+        <Link to="/sign-up">
+          <button className={`btn ${"btn--outline"} ${"btn--large"}`}>
+            GET STARTED
+          </button>
+        </Link>
+        <button
+          className={`btn ${"btn--primary"} ${"btn--large"}`}
+          onClick={() => setOpenModal(true)}
         >
-          GET STARTED
-        </Button>
-        <Button
-          className='btns'
-          buttonStyle='btn--primary'
-          buttonSize='btn--large'
+          WATCH PREVIEW <i className="far fa-play-circle" />
+        </button>
+        <Modal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
         >
-          WATCH PREVIEW <i className='far fa-play-circle' />
-          
-        </Button>
+        </Modal>
       </div>
     </div>
   );
