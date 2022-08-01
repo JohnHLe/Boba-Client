@@ -36,15 +36,14 @@
   border-radius: 8px;
 }
 
-
-.modalRight {
-  width: 100%;
-}
-
 .closeBtn {
   position: fixed;
   top: 8px;
   right: 8px;
+  font-weight: bold;
+  font-size: 50px;
+  color: gray;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {
