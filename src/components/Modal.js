@@ -12,6 +12,7 @@ const Modal = ({ open, onClose }) => {
         className='modalContainer'
       >
         <video src="/videos/bobapour.mp4" autoPlay loop muted />
+
         <div className='modalRight'>
           <p className='closeBtn' onClick={onClose}>
             X
@@ -20,6 +21,13 @@ const Modal = ({ open, onClose }) => {
           </div>
           <div className='btnContainer'>
           </div>
+        <div className='closeBtn' onClick={onClose}>
+          X
+        </div>
+        <div className='content'>
+        </div>
+        <div className='btnContainer'>
+
         </div>
       </div>
     </div>
