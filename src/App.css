@@ -7,13 +7,6 @@
 .home,
 .menu,
 .products,
-.sign-up {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
 
 .menu {
   background-image: url('../public/images/boba.jpg');
@@ -25,15 +18,6 @@
 }
 
 .products {
-  background-image: url('../public/images/boba.jpg');
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.sign-up {
   background-image: url('../public/images/boba.jpg');
   background-position: center;
   background-size: fill;
