@@ -11,7 +11,7 @@ const Modal = ({ open, onClose }) => {
         }}
         className='modalContainer'
       >
-        <video src="/videos/reactvid.mp4" autoPlay loop muted />
+        <video src="/videos/bobapour.mp4" autoPlay loop muted />
         <div className='modalRight'>
           <p className='closeBtn' onClick={onClose}>
             X
