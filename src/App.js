@@ -1,12 +1,12 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import './App.css';
-import Home from './components/pages/Home';
-import Menu from './components/pages/Menu';
-import Products from './components/pages/Products';
-import SignIn from './components/pages/SignIn';
-import SignUp from './components/pages/SignUp';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import Navbar from "./components/Navbar";
+import "./App.css";
+import Home from "./components/pages/Home";
+import Menu from "./components/pages/Menu";
+import Products from "./components/pages/Products";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -14,11 +14,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' exact element={<Home />} />
-          <Route path='/menu' exact element={<Menu />} />
-          <Route path='/products' exact element={<Products />} />
-          <Route path='/sign-in' exact element={<SignIn />} />
-          <Route path='/sign-up' exact element={<SignUp />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/about" exact element={<Menu />} />
+          <Route path="/posts" exact element={<Products />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
         </Routes>
       </Router>
     </>
