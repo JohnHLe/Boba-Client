@@ -1,79 +1,69 @@
-import React, { useState } from "react";
-import '../css/Auth.css';
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "../css/Register.css";
 
+function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
-function SignUp() {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1"
-    },
-    {
-      username: "user2"
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-  };
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (!userData) {
-      setIsSubmitted(true);
-    } else {
-      // Username found
-      setErrorMessages({ name: "uname", message: errors.uname });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+    try {
+      const res = await axios.post("/auth/register", {
+        username,
+        email,
+        password,
+      });
+      res.data && window.location.replace("/login");
+    } catch (err) {
+      setError(true);
     }
   };
-
-  // error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  // signup form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-
-    </div>
-  );
-
   return (
-    <div className="auth">
-      <div className="login-form">
-        <div className="title">Sign Up</div>
-        {isSubmitted ? <div>User is successfully signed up</div> : renderForm}
-      </div>
+    <div className="register">
+      <span className="registerTitle">Register</span>
+      <form className="registerForm" onSubmit={handleSubmit}>
+        <label>Username</label>
+        <input
+          type="text"
+          className="registerInput"
+          placeholder="Enter your username..."
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label>Email</label>
+        <input
+          type="text"
+          className="registerInput"
+          placeholder="Enter your email..."
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          className="registerInput"
+          placeholder="Enter your password..."
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="registerButton" type="submit">
+          Register
+        </button>
+      </form>
+      <button className="registerLoginButton">
+        <Link className="link" to="/login">
+          Login
+        </Link>
+      </button>
+      {error && (
+        <span style={{ color: "red", marginTop: "10px" }}>
+          Something went wrong!
+        </span>
+      )}
     </div>
   );
 }
 
-export default SignUp;
+export default Register;

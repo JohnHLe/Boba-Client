@@ -1,43 +1,22 @@
 import React from "react";
 import "../App.css";
 import "./css/Header.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
-function HeroSection() {
-  const baseUrl = "http://localhost:5000";
-
-  const getHome = () => {
-    axios
-      .get(baseUrl)
-      .then((res) => {
-        alert("i finally connected my frontend to ur moms backend");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
+function Header() {
   return (
-    <div className="hero-container">
-      <video src="/videos/reactvid.mp4" autoPlay loop muted />
-      <h1>Good Times, Good Boba</h1>
-      <p>What are you waiting for?</p>
-      <div className="hero-btns">
-        <button
-          className={`btn ${"btn--outline"} ${"btn--large"}`}
-          onClick={getHome}
-        >
-          GET
-        </button>
-        <Link to="/sign-up">
-          <button className={`btn ${"btn--outline"} ${"btn--large"}`}>
-            GET STARTED
-          </button>
-        </Link>
+    <div className="header">
+      <div className="header-titles">
+        <span className="header-title-lg">Blog</span>
       </div>
+      <video
+        className="header-bg"
+        src="/videos/reactvid.mp4"
+        autoPlay
+        loop
+        muted
+      />
     </div>
   );
 }
 
-export default HeroSection;
+export default Header;

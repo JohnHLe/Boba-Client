@@ -1,62 +1,74 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './css/Navbar.css';
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
+import "./css/Navbar.css";
 
-function Navbar() {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+function NavBar() {
+  const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5200/images/";
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
 
   return (
-    <>
-      <nav className='navbar'>
-        <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            BobaHome<i className='fas fa-mug-saucer' />
+    <div className="nav">
+      <div className="navLeft">
+        <i className="navIcon fab fa-facebook-square"></i>
+        <i className="navIcon fab fa-twitter-square"></i>
+        <i className="navIcon fab fa-pinterest-square"></i>
+        <i className="navIcon fab fa-instagram-square"></i>
+      </div>
+      <div className="navCenter">
+        <ul className="navList">
+          <li className="navListItem">
+            <Link className="link" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="navListItem">
+            <Link className="link" to="/">
+              ABOUT
+            </Link>
+          </li>
+          <li className="navListItem">
+            <Link className="link" to="/">
+              CONTACT
+            </Link>
+          </li>
+          <li className="navListItem">
+            <Link className="link" to="/write">
+              WRITE
+            </Link>
+          </li>
+          <li className="navListItem" onClick={handleLogout}>
+            {user && "LOGOUT"}
+          </li>
+        </ul>
+      </div>
+      <div className="navRight">
+        {user ? (
+          <Link to="/settings">
+            <img className="navImg" src={PF + user.profilePic} alt="" />
           </Link>
-          <div className='menu-icon' onClick={handleClick}>
-            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-          </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'>
-              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                Home
+        ) : (
+          <ul className="navList">
+            <li className="navListItem">
+              <Link className="link" to="/login">
+                LOGIN
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/products'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Products
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link
-                to='/sign-in'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Sign In
-              </Link>
-            </li>
-            
-            <li className="nav-item">
-              <Link
-                to='/sign-up'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
+            <li className="navListItem">
+              <Link className="link" to="/register">
+                REGISTER
               </Link>
             </li>
           </ul>
-        </div>
-      </nav>
-    </>
+        )}
+        <i className="navSearchIcon fas fa-search"></i>
+      </div>
+    </div>
   );
 }
 
-export default Navbar;
+export default NavBar;

@@ -1,92 +1,55 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import '../css/Auth.css';
+import axios from "axios";
+import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
+import "../css/Login.css";
 
+export default function Login() {
+  const userRef = useRef();
+  const passwordRef = useRef();
+  const { dispatch, isFetching } = useContext(Context);
 
-function SignIn() {
-  // React States
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-
-    var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post("/auth/login", {
+        username: userRef.current.value,
+        password: passwordRef.current.value,
+      });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE" });
     }
   };
-
-  // error message
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  // login form
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
-        </div>
-        
-        <div className="registration">Not registered? {" "} </div>
-        <Link to='/Sign-Up' className="registration">Sign Up</Link>
-
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-
-    </div>
-  );
 
   return (
-    <div className="auth">
-      <div className="login-form">
-        <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-      </div>
+    <div className="login">
+      <span className="loginTitle">Login</span>
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <label>Username</label>
+        <input
+          type="text"
+          className="loginInput"
+          placeholder="Enter your username..."
+          ref={userRef}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          className="loginInput"
+          placeholder="Enter your password..."
+          ref={passwordRef}
+        />
+        <button className="loginButton" type="submit" disabled={isFetching}>
+          Login
+        </button>
+      </form>
+      <button className="loginRegisterButton">
+        <Link className="link" to="/register">
+          Register
+        </Link>
+      </button>
     </div>
   );
 }
-
-export default SignIn;
